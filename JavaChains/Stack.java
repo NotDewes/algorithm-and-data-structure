@@ -1,40 +1,39 @@
-package JavaChains;
 import java.util.EmptyStackException;
 
-public class Pilha {
+public class Stack {
 
-        private linkedList pilha;
+        private linkedList Stack;
 
-        public Pilha() {
-            pilha = new linkedList();
+        public Stack() {
+            Stack = new linkedList();
         }
 
         public void push(Integer e) {
-            pilha.add_at(e,0);
+            Stack.insert(e,0);
         }
 
         public void pop() {
-            if (pilha.isEmpty())
+            if (Stack.isEmpty())
                 throw new EmptyStackException();
-            pilha.remove_at(0);
+            Stack.remove_at(0);
         }
 
         public Integer top() {
-            if (pilha.isEmpty())
+            if (Stack.isEmpty())
                 throw new EmptyStackException();
-            return pilha.get(0);
+            return Stack.get(0);
         }
 
         public int size() {
-            return pilha.size();
+            return Stack.size();
         }
 
         public boolean isEmpty() {
-            return pilha.isEmpty();
+            return Stack.isEmpty();
         }
 
         public void clear() {
-            pilha.clear();
+            Stack.clear();
         }
     }
 

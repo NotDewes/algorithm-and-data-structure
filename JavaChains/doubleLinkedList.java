@@ -1,9 +1,7 @@
-package JavaChains;
 public class doubleLinkedList {
 
     private Node head;
-    private Node tail;
-    //private Node current;    
+    private Node tail;   
     private int count;
 
      private class Node {
@@ -40,15 +38,15 @@ public class doubleLinkedList {
     private Node getNodeIndex(int index) {
         Node aux = null;
         
-        if (index < count/2) { //do inicio para o meio
+        if (index < count/2) {
             aux = head.next;
-            for (int i=0; i<index; i++) {//O(n)
+            for (int i=0; i<index; i++) {
                 aux = aux.next;
             }
         }
-        else { //do fim para o meio
+        else {
             aux = tail.prev;
-            for (int i=count-1; i>index; i--) {//O(n)
+            for (int i=count-1; i>index; i--) {
                 aux = aux.prev;
             }
         }
@@ -97,7 +95,6 @@ public class doubleLinkedList {
         count++;
     }
     
-    //remove primeira ocorrencia do element
     public boolean remove(Integer element) {
         Node aux = head.next;
         for(int i=0; i<count;i++) {
@@ -124,7 +121,6 @@ public class doubleLinkedList {
         return (count == 0);
     } 
 
-    //obter uma representação textual dos elementos da lista
     public String toString()
     {
         StringBuilder s = new StringBuilder();

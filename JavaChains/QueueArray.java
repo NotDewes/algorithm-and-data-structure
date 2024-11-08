@@ -1,4 +1,3 @@
-package JavaChains;
 public class QueueArray<T> {
     private T[] fila;
     private int count;

@@ -1,4 +1,3 @@
-package JavaChains;
 public class Queue<T> {
     private class Node {
         T element;

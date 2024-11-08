@@ -1,4 +1,3 @@
-package JavaChains;
 public class linkedList {
 
     private class Node {
@@ -21,7 +20,6 @@ public class linkedList {
     private Node tail;
     private int count;
 
-    //construtor
     public linkedList() {
         head = null;
         tail = null;
@@ -54,7 +52,6 @@ public class linkedList {
         count++;
     }
 
-    //Retorna o elemento de uma determinada posicao da lista
     public Integer get(int index) { //O(n)
         if ((index < 0) || (index >= count)) 
             throw new IndexOutOfBoundsException();
@@ -69,7 +66,6 @@ public class linkedList {
         return aux.element;
     }
 
-    //Retorna true se a lista contem o elemento especificado.
     public boolean contains(Integer element) { //O(n)
         Node aux = head;
         while(aux != null) {
@@ -80,7 +76,6 @@ public class linkedList {
         return false;
     }
 
-    //obter uma representação textual dos elementos da lista
     public String toString() {
         StringBuilder s = new StringBuilder();
 
@@ -95,13 +90,10 @@ public class linkedList {
         return s.toString();
     }    
 
-    //Remove a primeira ocorrencia do elemento na lista, se estiver presente
     public boolean remove(Integer element) {
-        // Se a lista esta vazia
         if (count == 0)
             return false;
 
-        //remocao do primeiro 
         if (element.equals(head.element)) {
             if (count == 1) { 
                 tail = null;
@@ -111,8 +103,8 @@ public class linkedList {
             return true;
         }
 
-        Node ant = head; // referencia aponta para o anterior
-        Node aux = head.next; // referencia aponta para o elemento que está sendo verificado
+        Node ant = head; 
+        Node aux = head.next;
 
         for (int i=1; i<count; i++) {
             if (aux.element.equals(element)) { 
@@ -120,7 +112,7 @@ public class linkedList {
                     tail = ant;
                     tail.next = null;
                 }
-                else { //remocao do meio
+                else {
                     ant.next = aux.next;
                 }
                 count--;
@@ -133,27 +125,34 @@ public class linkedList {
         return false;
     }
 
-    //Insere um elemento em uma determinada posicao da lista
-    public void add_at(Integer element, int pos){
+    public void insert(Integer element, int pos) {
+        if (pos < 0 || pos > count) { 
+            throw new IndexOutOfBoundsException("Posição inválida");
+        }
+    
         Node n = new Node(element);
-
-        int i = 0;
-        Node atual = head;
-
-        while (atual.next != null && i < pos - 1){
-            atual = atual.next;
-            i++;
+    
+        if (pos == 0) {
+            n.next = head;
+            head = n;
+            if (count == 0) {
+                tail = n;
+            }
+        } else {
+            Node atual = head;
+            for (int i = 0; i < pos - 1; i++) {
+                atual = atual.next;
+            }
+            n.next = atual.next;
+            atual.next = n;
+            if (n.next == null) {
+                tail = n;
+            }
         }
-
-        if (atual.next == null){
-            tail = n;
-        }
-
-        n.next = atual.next;
-        atual.next = n;
+    
+        count++; 
     }
 
-    //Substitui o elemento armanzenado em uma determinada posicao da lista
     public void set(Integer element, int pos){
         Node n = new Node(element);
 
@@ -204,18 +203,5 @@ public class linkedList {
         return -1;
     }
 
-    
-    public static void main(String[] args){
-        linkedList lista = new linkedList();
-        lista.add(1);
-        lista.add(2);
-        lista.add(3);
-        lista.add(4);
-        System.out.println(lista.indexOf(1));
-        lista.add_at(999, 0);
-        System.out.print(lista.toString());
-
-        //arrumar o add at
-    }
 }
 
